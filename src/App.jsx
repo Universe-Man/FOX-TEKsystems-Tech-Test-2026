@@ -9,6 +9,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [time, setTime] = useState("");
 
   const API_URL = "https://jsonplaceholder.typicode.com/users";
 
@@ -19,6 +20,7 @@ function App() {
       fetch(API_URL)
         .then(res => res.json())
         .then(data => {
+          setTime(Date.now());
           setUsers(data);
           setFilteredUsers(data);
         });
@@ -40,7 +42,7 @@ function App() {
       <h2>Search Users By Name</h2>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       {filteredUsers && filteredUsers.length > 0 ? (
-        <DisplayList users={filteredUsers} />
+        <DisplayList users={filteredUsers} time={time} />
       ) : error ? (
         "Error!"
       ) : loading ? (

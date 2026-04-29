@@ -1,9 +1,10 @@
 import ListItem from "./ListItem";
 import "../App.css";
 
-function DisplayList({users}) {
+function DisplayList({users, time}) {
   return (
     <div className="list">
+      {time}
       <ul>
         {users.map((user) => {
           return (
